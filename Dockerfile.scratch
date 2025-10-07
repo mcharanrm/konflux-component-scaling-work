@@ -1,0 +1,16 @@
+# https://docs.docker.com/reference/glossary/#base-image
+
+# Use an empty base image(a super-minimal Dockerfile) for minimizing 
+# the size of container images. The images don’t include a base OS 
+# or extra stuffThis reduces the storage space when all the images 
+# are pushed to Quay.
+
+# Because we used a totally empty image (FROM scratch) to keep things
+# small, the certification checks (like verifying that the image is 
+# based on UBI, has required metadata, and contains no disallowed 
+# packages) fail. The task itself fails, but it doesn't mark the 
+# entire pipeline as failed.
+
+# Because image is based on scratch and has no OS or packages, 
+# Quay’s security scanner can’t analyze it - Unsupported
+FROM scratch
